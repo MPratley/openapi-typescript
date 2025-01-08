@@ -585,6 +585,7 @@ export function createFinalURL(pathname, options) {
     finalURL = defaultPathSerializer(finalURL, options.params.path);
   }
   let search = options.querySerializer(options.params.query ?? {});
+  // TODO it's here
   if (search.startsWith("?")) {
     search = search.substring(1);
   }

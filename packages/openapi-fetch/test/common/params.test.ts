@@ -534,6 +534,20 @@ describe("params", () => {
         });
         expect(`${actualURL.pathname}${actualURL.search}`).toBe("/resources/789?query");
       });
+
+      test("appends path params to endpoint when endpoint has params", async () => {
+        let search = "";
+        const client = createObservedClient<paths>({}, async (req) => {
+          search = new URL(req.url).search;
+          return Response.json({ success: true });
+        });
+
+        await client.GET("/query-params?routeParam=yes", {
+          params: { query: { otherParam: "appended" } },
+        });
+
+        expect(search).toBe("?routeParam=yes&otherParam=appended");
+      });
     });
   });
 });

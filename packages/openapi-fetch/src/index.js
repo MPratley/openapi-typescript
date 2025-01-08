@@ -589,7 +589,9 @@ export function createFinalURL(pathname, options) {
   if (search.startsWith("?")) {
     search = search.substring(1);
   }
-  if (search) {
+  if (search && finalURL.includes("?")) {
+    finalURL += `&${search}`;
+  } else if (search) {
     finalURL += `?${search}`;
   }
   return finalURL;

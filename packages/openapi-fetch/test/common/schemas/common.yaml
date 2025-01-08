@@ -421,6 +421,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /query-params?routeParam=yes:
+    get:
+      parameters:
+        - in: query
+          name: otherParam
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                required:
+                  - status
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"               
 components:
   schemas:
     Error:
